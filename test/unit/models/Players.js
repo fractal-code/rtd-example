@@ -1,3 +1,5 @@
+/*global describe, it, expect, Meteor */
+
 (function () {
 
     "use strict";
@@ -10,4 +12,4 @@
 
     });
 
-})();
+}());

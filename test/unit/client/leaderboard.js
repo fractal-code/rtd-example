@@ -1,3 +1,5 @@
+/*global Template, describe, it, expect, jasmine, Session, Players */
+
 (function () {
     "use strict";
 
@@ -7,10 +9,10 @@
     Template.stub('player');
 
     describe("Template.leaderboard.players", function () {
-
         it("asks for the players to be primarily in descending score order, then in alphabetical order and returns as is", function () {
             var someLocalCollectionCursor = {};
             Players.find = function (selector, options) {
+                expect(selector).toBeDefined();
                 expect(options.sort.score).toBe(-1);
                 expect(options.sort.name).toBe(1);
                 return someLocalCollectionCursor;
@@ -84,4 +86,4 @@
 
     });
 
-})();
+}());

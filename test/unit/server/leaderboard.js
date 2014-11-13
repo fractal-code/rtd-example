@@ -1,3 +1,5 @@
+/*global describe, it, spyOn, Players, Meteor, expect */
+
 (function () {
 
     "use strict";
@@ -26,4 +28,4 @@
 
     });
 
-})();
+}());

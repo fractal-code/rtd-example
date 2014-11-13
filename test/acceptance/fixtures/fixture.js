@@ -1,7 +1,13 @@
+/*global Meteor, __meteor_bootstrap__, Players, WebApp */
+
 (function () {
     "use strict";
 
-    var createRoute = function (route, handler) {
+    var createRoute,
+        reset,
+        setupPlayers;
+
+    createRoute = function (route, handler) {
         var connectHandlers;
         if (typeof __meteor_bootstrap__.app !== 'undefined') {
             connectHandlers = __meteor_bootstrap__.app;
@@ -17,27 +23,24 @@
             }.future()
         });
     };
-
-    var reset = function () {
+    reset = function () {
         Meteor.users.remove({});
         Players.remove({});
     };
-
-    var setupPlayers = function () {
+    setupPlayers = function () {
         var names = ["Ada Lovelace",
             "Grace Hopper",
             "Marie Curie",
             "Carl Friedrich Gauss",
             "Nikola Tesla",
-            "Claude Shannon"];
-        for (var i = 0; i < names.length; i += 1) {
+            "Claude Shannon"], i;
+        for (i = 0; i < names.length; i += 1) {
             Players.insert({name: names[i], score: i * 10});
         }
     };
-
     Meteor.startup(function () {
         reset();
         createRoute('reset', reset);
         createRoute('setupPlayers', setupPlayers);
     });
-})();
+}());
